@@ -1,2 +1,4 @@
 MP_DATA/
 isl\ data/
+venv/
+_pycache_/
