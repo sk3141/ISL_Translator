@@ -1,0 +1,22 @@
+@echo off
+setlocal enabledelayedexpansion
+
+:: Define the directory where your videos are stored
+set "root_directory=E:\dev\ISL\isl_detector\isl data\Greetings"
+
+:: Loop through all subdirectories and find .mov files
+for /r "%root_directory%" %%f in (*.mov) do (
+    echo Converting "%%f" to MP4...
+    
+    :: Extract the directory and file name without the extension
+    set "filename=%%~nf"
+    set "filepath=%%~dpnf"
+    
+    :: Convert the .mov file to .mp4 using FFmpeg
+    ffmpeg -i "%%f" -vf scale=1920:1080 "!filepath!.mp4"
+    
+    echo Conversion complete: "!filepath!.mp4"
+)
+
+echo All .mov files have been converted to .mp4!
+pause
